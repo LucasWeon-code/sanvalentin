@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín - Carta y Corazón</title>
+    <style>
+        /* Estilos del fondo y la carta */
+        body {
+            background-color: black;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Estilos de la carta que se abre */
+        .carta {
+            width: 200px;
+            height: 300px;
+            background-color: white;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: abrirCarta 2s forwards;
+        }
+
+        .carta .papel {
+            padding: 20px;
+            text-align: center;
+            color: red;
+            font-size: 20px;
+            font-family: 'Abscissa', sans-serif;
+        }
+
+        .carta img {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+        }
+
+        /* Animación de la carta abriéndose */
+        @keyframes abrirCarta {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Estilo para los botones */
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .boton {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background-color: darkred;
+        }
+
+        /* Estilos para el texto */
+        .texto {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Estilos para el corazón palpitante */
+        .corazon {
+            width: 100px;
+            height: 90px;
+            background-color: red;
+            position: relative;
+            transform: rotate(45deg);
+            animation: palpitando 1s infinite;
+            margin-top: 20px;
+        }
+
+        .corazon::before, .corazon::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .corazon::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .corazon::after {
+            left: 50px;
+            top: 0;
+        }
+
+        @keyframes palpitando {
+            0%, 100% {
+                transform: scale(1) rotate(45deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(45deg);
+            }
+        }
+
+        /* Animación para la caída de sangre */
+        .sangre {
+            position: absolute;
+            width: 10px;
+            height: 50px;
+            background-color: red;
+            left: 50%;
+            top: 140px;
+            opacity: 0;
+            transform: translateX(-50%);
+            animation: sangreCaer 2s infinite;
+        }
+
+        @keyframes sangreCaer {
+            0% {
+                opacity: 0;
+                top: 140px;
+            }
+            50% {
+                opacity: 1;
+                top: 180px;
+            }
+            100% {
+                opacity: 0;
+                top: 220px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- La carta con la imagen -->
+    <div class="carta">
+        <div class="papel">
+            <p>¿Quieres ser mi San Valentín, Valentina?</p>
+            <img src="https://i.pinimg.com/736x/cb/7c/c5/cb7cc507684a71616bb81cebc0971968.jpg" alt="Imagen de San Valentín">
+        </div>
+    </div>
+
+    <!-- Texto debajo de la carta -->
+    <div class="texto">
+        <p>Haz clic en una opción para elegir tu respuesta.</p>
+    </div>
+
+    <!-- Botones para la respuesta -->
+    <div class="botones">
+        <button class="boton" id="si">Sí</button>
+        <button class="boton" id="no">No</button>
+    </div>
+
+    <!-- Aquí va el código JavaScript -->
+    <script>
+        document.getElementById("si").addEventListener("click", function() {
+            // Simula un apagón de luces
+            document.body.style.transition = "background-color 1s";
+            document.body.style.backgroundColor = "black";
+
+            setTimeout(function() {
+                // Después del apagón, mostrar el corazón
+                document.body.innerHTML += `
+                    <div class="corazon"></div>
+                    <div class="sangre"></div>
+                `;
+            }, 1000);
+        });
+
+        document.getElementById("no").addEventListener("click", function() {
+            window.location.href = 'https://www.youtube.com/watch?v=42CVIuY6nFo';
+        });
+    </script>
+
+</body>
+</html>
